@@ -1,0 +1,8 @@
+{
+    "id": "groot",
+    "name": "Groot 2 Behavior Tree Editor",
+    "version": "1.0.0",
+    "description": "Installs Groot 2 behavior tree editor in a DevContainer",
+    "options": {},
+    "installsAfter": []  
+}
