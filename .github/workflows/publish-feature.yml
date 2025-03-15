@@ -1,30 +1,30 @@
-name: Publish DevContainer Feature
+name: Publish Devcontainer Feature to GHCR
 
 on:
   push:
     branches:
       - main
-  release:
-    types: [created]
+    tags:
+      - "v*.*.*"
 
 jobs:
   publish:
+    name: Publish Devcontainer Feature
     runs-on: ubuntu-latest
+
     permissions:
-      packages: write
       contents: read
+      packages: write 
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Install DevContainer CLI
-        run: npm install -g @devcontainers/cli
-
       - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
 
-      - name: Publish DevContainer Feature
-        run: |
-          devcontainer features publish groot -n ghcr.io/${{ github.repository_owner }}/devcontainer-feature_groot
+      - name: Install Devcontainer CLI
+        run: npm install -g @devcontainers/cli
 
+      - name: Publish Devcontainer Feature
+        run: devcontainer features publish --namespace ghcr.io/${{ github.repository_owner }}/devcontainer-features
