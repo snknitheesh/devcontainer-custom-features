@@ -26,4 +26,5 @@ jobs:
 
       - name: Publish DevContainer Feature
         run: |
-          devcontainer features publish --namespace ghcr.io/${{ github.repository_owner }}/groot
+          devcontainer features publish groot -n ghcr.io/${{ github.repository_owner }}/devcontainer-feature_groot
+
